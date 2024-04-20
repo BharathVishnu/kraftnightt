@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kraftnightt/addfriends/friends.dart';
-import 'addItenary/add.dart';
-
+// ignore: depend_on_referenced_packages
+import 'package:get/get.dart';
+import 'package:kraftnightt/home/views/homepage.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,12 +10,14 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: AddPage(),
+      initialRoute: '/home',
+      getPages: [GetPage(name: '/home', page: () => HomeScreen())],
     );
   }
 }
