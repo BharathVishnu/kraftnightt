@@ -7,6 +7,7 @@ import 'package:kraftnightt/home/controller/controller.dart';
 import 'package:kraftnightt/home/views/Calander.dart';
 import 'package:kraftnightt/home/views/mainpage.dart';
 import 'package:kraftnightt/home/views/profile.dart';
+import 'package:kraftnightt/memoirs/views/memoir.dart';
 
 class HomeScreen extends StatelessWidget {
   final homecontroller controller = Get.put(homecontroller());
@@ -23,6 +24,7 @@ class HomeScreen extends StatelessWidget {
               /* Replace YourHomeWidget() with the actual widget you want to display */
 
               Calender(),
+              Memoirs(),
               MainPage(),
               ProfileScreen()
             ],
@@ -43,7 +45,7 @@ class HomeScreen extends StatelessWidget {
             activeColor: Colors.black,
             iconSize: 24,
             padding: const EdgeInsets.symmetric(
-              horizontal: 20.0,
+              horizontal: 10.0,
               vertical: 15,
             ),
             duration: const Duration(milliseconds: 400),
@@ -58,6 +60,12 @@ class HomeScreen extends StatelessWidget {
               GButton(
                 iconActiveColor: Colors.white,
                 text: "Medical Info",
+                // iconActiveColor: Colors.green,
+                icon: Icons.more_vert,
+              ),
+              GButton(
+                iconActiveColor: Colors.white,
+                text: "itenair",
                 // iconActiveColor: Colors.green,
                 icon: Icons.more_vert,
               ),

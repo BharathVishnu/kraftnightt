@@ -5,8 +5,8 @@ import 'package:kraftnightt/home/controller/controller.dart';
 import 'package:kraftnightt/home/models/itenary.dart';
 
 class MainPage extends StatelessWidget {
- MainPage({super.key});
-   homecontroller controller1 = Get.put(homecontroller());
+  MainPage({super.key});
+  homecontroller controller1 = Get.put(homecontroller());
   @override
   Widget build(BuildContext context) {
     List<String> items = ['All', 'personnal', 'recommendation', 'friends'];
@@ -68,9 +68,7 @@ class MainPage extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: () {
-                       controller1.selected.value=items[index];
-                       
-                          
+                          controller1.selected.value = items[index];
                         },
                         child: Container(
                             clipBehavior: Clip.hardEdge,
@@ -87,10 +85,11 @@ class MainPage extends StatelessWidget {
                       );
                     }),
               ),
-              SizedBox(height: height/5,
-              child: ListView.builder(itemCount: , itemBuilder:(context,index){
-
-              }),)
+              SizedBox(
+                height: height / 5,
+                child: ListView.builder(
+                    itemCount: 0, itemBuilder: (context, index) {}),
+              )
             ],
           ),
         ),
