@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "174242090546",
+    "project_id": "kraftnight-91c02",
+    "storage_bucket": "kraftnight-91c02.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:174242090546:android:f2f57605faf21fdd57362b",
+        "android_client_info": {
+          "package_name": "com.example.kraftnightt"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZdWe6Gvjd9sB3IGzMogQWny0bUAWr6qM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
