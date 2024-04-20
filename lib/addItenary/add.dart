@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -12,16 +14,8 @@ class EventRegistrationPage extends StatefulWidget {
 }
 
 class _EventRegistrationPageState extends State<EventRegistrationPage> {
-  late TextEditingController _eventNameController;
-  late TextEditingController _cityController;
-  late TextEditingController _venueController;
-  late TextEditingController _moreInfoController;
-  late TextEditingController _artistsController;
-  late TextEditingController _eventRateController;
-  late TextEditingController _accountHolderNameController;
-  late TextEditingController _bankNameController;
-  late TextEditingController _accountNumberController;
-  late TextEditingController _bankIFSCController;
+  late TextEditingController _titleController;
+  late TextEditingController _descController;
 
   DateTime? _startDate;
   DateTime? _endDate;
@@ -30,52 +24,87 @@ class _EventRegistrationPageState extends State<EventRegistrationPage> {
 
   var pickedFile;
 
+  String _category = "";
+
+  String _visible = "";
+
   @override
   void initState() {
     super.initState();
-    _eventNameController = TextEditingController();
-    _cityController = TextEditingController();
-    _venueController = TextEditingController();
-    _moreInfoController = TextEditingController();
-    _artistsController = TextEditingController();
-    _eventRateController = TextEditingController();
-    _accountHolderNameController = TextEditingController();
-    _bankNameController = TextEditingController();
-    _accountNumberController = TextEditingController();
-    _bankIFSCController = TextEditingController();
+    _titleController = TextEditingController();
+    _descController = TextEditingController();
   }
 
   @override
   void dispose() {
-    _eventNameController.dispose();
-    _cityController.dispose();
-    _venueController.dispose();
-    _moreInfoController.dispose();
-    _artistsController.dispose();
-    _eventRateController.dispose();
-    _accountHolderNameController.dispose();
-    _bankNameController.dispose();
-    _accountNumberController.dispose();
-    _bankIFSCController.dispose();
+    _titleController.dispose();
+
     super.dispose();
   }
 
-  // Function to handle image selection
-  Future<void> _pickImage() async {
-    final picker = ImagePicker();
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-    setState(() {
-      this.pickedFile = pickedFile;
-    });
+  // Function to upload image and get URL
+  Future<String?> uploadImage() async {
+    if (pickedFile != null) {
+      final filePath = pickedFile.path;
+      final fileName = basename(filePath);
+      final storageRef = FirebaseStorage.instance.ref().child('images');
+      final reference = storageRef.child(fileName);
+      final task = reference.putFile(File(filePath));
+      final snapshot = await task.whenComplete(() => null);
+      final url = await snapshot.ref.getDownloadURL();
+      return url;
+    } else {
+      return null;
+    }
+  }
+
+  void resetFields() {
+    _titleController.clear();
+    _descController.clear();
   }
 
   // Function to handle form submission
-  void submitForm() {
-    // Add your form submission logic here
-    // You can access form fields using their controllers
-    // For example, _eventNameController.text contains the value of Event Name field
-    // You can also handle image upload if required
-    // Access the selected image path using pickedFile.path
+  Future<void> submitForm() async {
+    // Upload image if selected
+    String? imageUrl;
+    if (pickedFile != null) {
+      imageUrl = await uploadImage();
+    }
+
+    // Combine the date and time values to create DateTime objects
+    DateTime combinedStartDateTime = _startDate!.add(
+      Duration(hours: _startTime!.hour, minutes: _startTime!.minute),
+    );
+
+    DateTime combinedEndDateTime = _endDate!.add(
+      Duration(hours: _endTime!.hour, minutes: _endTime!.minute),
+    );
+
+    // Convert the DateTime objects to Timestamp objects
+    Timestamp startTimestamp = Timestamp.fromDate(combinedStartDateTime);
+    Timestamp endTimestamp = Timestamp.fromDate(combinedEndDateTime);
+
+    final eventId = DateTime.now().millisecondsSinceEpoch.toString();
+
+    final eventData = {
+      'image_url': imageUrl,
+      'title': _titleController.text,
+      'category': _category,
+      'start': startTimestamp,
+      'email': "test@gmail.com",
+      'end': endTimestamp,
+      'visible': _visible,
+      'description': _descController.text,
+    };
+
+    try {
+      await FirebaseFirestore.instance.collection('itenary').add(eventData);
+
+      getSuccessSnackBar("Event added successfully");
+      resetFields();
+    } catch (e) {
+      getErrorSnackBarNew("Failed to add the event");
+    }
   }
 
   @override
@@ -90,12 +119,13 @@ class _EventRegistrationPageState extends State<EventRegistrationPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // Text('EVENT INFO',
-              //     style:
-              //         TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
               SizedBox(height: 10.0),
               GestureDetector(
-                onTap: _pickImage,
+                onTap: () async {
+                  final picker = ImagePicker();
+                  pickedFile =
+                      await picker.pickImage(source: ImageSource.gallery);
+                },
                 child: Container(
                   width: 293, // Set the width to the desired value
                   height: 150, // Set the height to the desired value
@@ -112,7 +142,7 @@ class _EventRegistrationPageState extends State<EventRegistrationPage> {
               ),
               SizedBox(height: 10.0),
               TextFormField(
-                controller: _eventNameController,
+                controller: _titleController,
                 decoration: InputDecoration(
                   labelText: 'Title',
                   labelStyle: TextStyle(color: Colors.grey),
@@ -138,7 +168,9 @@ class _EventRegistrationPageState extends State<EventRegistrationPage> {
                   );
                 }).toList(),
                 onChanged: (String? value) {
-                  setState(() {});
+                  setState(() {
+                    _category = value!;
+                  });
                 },
               ),
               SizedBox(height: 20.0),
@@ -233,12 +265,14 @@ class _EventRegistrationPageState extends State<EventRegistrationPage> {
                   );
                 }).toList(),
                 onChanged: (String? value) {
-                  setState(() {});
+                  setState(() {
+                    _visible = value!;
+                  });
                 },
               ),
               SizedBox(height: 20.0),
               TextFormField(
-                controller: _moreInfoController,
+                controller: _descController,
                 maxLines: 5, // Set the maximum number of lines
                 decoration: InputDecoration(
                   labelText: 'More Info',
@@ -250,9 +284,7 @@ class _EventRegistrationPageState extends State<EventRegistrationPage> {
                       vertical: 20.0), // Adjust vertical padding as needed
                 ),
               ),
-
               SizedBox(height: 10.0),
-
               SizedBox(height: 20.0),
               Center(
                 child: SizedBox(
@@ -285,6 +317,30 @@ class _EventRegistrationPageState extends State<EventRegistrationPage> {
           ),
         ),
       ),
+    );
+  }
+
+  getSuccessSnackBar(String message) {
+    Get.snackbar(
+      "Success",
+      message,
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: Colors.grey,
+      colorText: Colors.white,
+      borderRadius: 10,
+      margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
+    );
+  }
+
+  getErrorSnackBarNew(String message) {
+    Get.snackbar(
+      "Error",
+      message,
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: Colors.grey,
+      colorText: Colors.white,
+      borderRadius: 10,
+      margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
     );
   }
 }
