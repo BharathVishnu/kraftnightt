@@ -36,7 +36,7 @@ class ItenaryBox extends StatelessWidget {
           ],
           image: DecorationImage(
             image: NetworkImage(
-                "https://firebasestorage.googleapis.com/v0/b/doorcode-23c79.appspot.com/o/images%2F1000126316.jpg?alt=media&token=fa768ec4-c850-4bdc-95d8-6052ae6d63af"), // Set background image
+                "https://firebasestorage.googleapis.com/v0/b/kraftnight-91c02.appspot.com/o/img3.jpg?alt=media&token=46b9edf0-d86b-4bcf-9cd2-3fd5ec00db67"), // Set background image
             fit: BoxFit.cover, // Cover the entire container
           ),
         ),
