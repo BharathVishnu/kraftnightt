@@ -4,6 +4,7 @@ class Itinerary {
   Image? img;
   String? name;
   String? type;
+
   Itinerary({this.img, this.name, this.type});
 }
 
@@ -21,12 +22,12 @@ List<Itinerary> itineraries = [
   Itinerary(
     // img: Image('image3.jpg'),
     name: 'City Tour',
-    type: 'pesonnal',
+    type: 'personnal',
   ),
   Itinerary(
     // img: Image('image4.jpg'),
     name: 'Cultural Immersion',
-    type: 'recommended',
+    type: 'recommendation',
   ),
   Itinerary(
     // img: Image('image5.jpg'),

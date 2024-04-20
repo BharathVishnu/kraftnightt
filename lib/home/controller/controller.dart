@@ -12,9 +12,18 @@ class homecontroller extends GetxController {
 
   var selecteditems = <Itinerary>[].obs;
   void filterItems(List<Itinerary> itineraries) {
-    for (var itinerary in itineraries) {
-      if (itinerary.type?.toUpperCase() == selected.toUpperCase()) {
-        selecteditems.add(itinerary);
+    print(itineraries);
+    if (selected.toLowerCase() == 'all') {
+      selecteditems.value = itineraries;
+      print(selecteditems);
+      print("yees");
+    } else {
+      for (Itinerary itinerary in itineraries) {
+        if (itinerary.type?.toUpperCase() == selected.toUpperCase()) {
+          print(selecteditems);
+          selecteditems.add(itinerary);
+          print(selecteditems);
+        }
       }
     }
   }

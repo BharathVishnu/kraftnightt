@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:kraftnightt/components/textfield.dart';
 import 'package:kraftnightt/home/controller/controller.dart';
 import 'package:kraftnightt/home/models/itenary.dart';
@@ -51,7 +52,7 @@ class MainPage extends StatelessWidget {
                 textField("discover a city", Icons.search, false, scontroller,
                     TextInputType.name),
                 SizedBox(
-                  height: height / 20,
+                  height: height / 10,
                 ),
                 Row(
                   children: [
@@ -67,31 +68,79 @@ class MainPage extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       itemCount: items.length,
                       itemBuilder: (context, index) {
-                        return Container(
-                            clipBehavior: Clip.hardEdge,
-                            padding: EdgeInsets.only(left: 10, right: 10),
-                            margin: EdgeInsets.all(10),
-                            height: height / 20,
-                            // width: width / 4,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                gradient: LinearGradient(
-                                    colors: [Colors.blue, Colors.grey]),
-                                border: Border.all(color: Colors.blue)),
-                            child: InkWell(
-                                onTap: () {
-                                  controller1.selected.value = items[index];
-                                  controller1.filterItems(itineraries);
+                        return InkWell(
+                          onTap: () {
+                            // controller1.selecteditems.clear();
+                            controller1.selected.value = items[index];
+                            controller1.filterItems(itineraries);
+                            // print(itineraries);
 
-                                  print(controller1.selected.value);
-                                },
-                                child: Center(child: Text(items[index]))));
+                            print(controller1.selected.value);
+                          },
+                          child: Container(
+                              clipBehavior: Clip.hardEdge,
+                              padding: EdgeInsets.only(left: 10, right: 10),
+                              margin: EdgeInsets.all(10),
+                              height: height / 20,
+                              // width: width / 4,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  gradient: LinearGradient(
+                                      colors: [Colors.blue, Colors.grey]),
+                                  border: Border.all(color: Colors.blue)),
+                              child: Center(child: Text(items[index]))),
+                        );
                       }),
                 ),
-                SizedBox(
-                  height: height / 5,
-                  child: ListView.builder(
-                      itemCount: 0, itemBuilder: (context, index) {}),
+                Obx(
+                  () => SizedBox(
+                    height: height / 3,
+                    child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        physics: ScrollPhysics(),
+                        itemCount: controller1.selecteditems.length,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            margin: EdgeInsets.all(5),
+                            height: height / 4,
+                            width: width / 2,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(blurRadius: 5, color: Colors.grey)
+                                ],
+                                borderRadius: BorderRadius.circular(20),
+                                border: Border.all(
+                                    color:
+                                        const Color.fromARGB(255, 12, 12, 12))),
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  bottom: 40, left: 10, right: 10, top: 10),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    height: height / 5,
+                                    width: width / 2,
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image:
+                                              AssetImage('lib/asets/img1.jpg'),
+                                          fit: BoxFit
+                                              .cover, // Adjust this based on your requirements
+                                        ),
+                                        borderRadius: BorderRadius.circular(20),
+                                        border: Border.all(
+                                            color: Color.fromARGB(
+                                                255, 236, 234, 238))),
+                                  ),
+                                  Text(controller1.selecteditems[index].name
+                                      .toString())
+                                ],
+                              ),
+                            ),
+                          );
+                        }),
+                  ),
                 )
               ],
             ),
