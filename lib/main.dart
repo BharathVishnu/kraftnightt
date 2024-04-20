@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:get/get.dart';
+import 'package:kraftnightt/carousel/carousel.dart';
 import 'package:kraftnightt/home/views/homepage.dart';
 
 void main() {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       initialRoute: '/home',
-      getPages: [GetPage(name: '/home', page: () => HomeScreen())],
+      getPages: [GetPage(name: '/home', page: () => Carousel())],
     );
   }
 }
