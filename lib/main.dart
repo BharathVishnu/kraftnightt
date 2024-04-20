@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'addItenary/add.dart';
+import 'package:kraftnightt/addItenary/memoirs.dart';
+import 'addItenary/memoirs.dart';
 
 
 void main() {
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: EventRegistrationPage(),
+      home: Memoirs(),
     );
   }
 }
