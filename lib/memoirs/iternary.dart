@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:kraftnightt/carousel/carousel.dart';
 
 class ItenaryBox extends StatelessWidget {
   final String backgroundImagePath;
@@ -17,7 +18,9 @@ class ItenaryBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => {},
+      onTap: () {
+        Get.to(() => Carousel());
+      },
       child: Container(
         width: 320,
         height: 180,

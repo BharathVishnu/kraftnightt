@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:get/get.dart';
+import 'package:kraftnightt/carousel/carousel.dart';
 import 'package:kraftnightt/home/views/homepage.dart';
 
 void main() {
