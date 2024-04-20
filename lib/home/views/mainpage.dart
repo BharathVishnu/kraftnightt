@@ -18,59 +18,56 @@ class MainPage extends StatelessWidget {
       child: Scaffold(
         body: Padding(
           padding: EdgeInsets.all(10),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    children: [
-                      Text(
-                        "Where do ",
-                        style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        Text(
+                          "Where do ",
+                          style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      Text(
-                        "you want to go?",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                        ),
-                      )
-                    ],
-                  ),
-                  Icon(Icons.person)
-                ],
-              ),
-              SizedBox(
-                height: height / 20,
-              ),
-              textField("discover a city", Icons.search, false, scontroller,
-                  TextInputType.name),
-              SizedBox(
-                height: height / 20,
-              ),
-              Row(
-                children: [
-                  Text(
-                    "Explore Cities",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: height / 15,
-                child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: items.length,
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                        onTap: () {
-                          controller1.selected.value = items[index];
-                        },
-                        child: Container(
+                        Text(
+                          "you want to go?",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                          ),
+                        )
+                      ],
+                    ),
+                    Icon(Icons.person)
+                  ],
+                ),
+                SizedBox(
+                  height: height / 20,
+                ),
+                textField("discover a city", Icons.search, false, scontroller,
+                    TextInputType.name),
+                SizedBox(
+                  height: height / 20,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      "Explore Cities",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: height / 15,
+                  child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: items.length,
+                      itemBuilder: (context, index) {
+                        return Container(
                             clipBehavior: Clip.hardEdge,
                             padding: EdgeInsets.only(left: 10, right: 10),
                             margin: EdgeInsets.all(10),
@@ -81,16 +78,23 @@ class MainPage extends StatelessWidget {
                                 gradient: LinearGradient(
                                     colors: [Colors.blue, Colors.grey]),
                                 border: Border.all(color: Colors.blue)),
-                            child: Center(child: Text(items[index]))),
-                      );
-                    }),
-              ),
-              SizedBox(
-                height: height / 5,
-                child: ListView.builder(
-                    itemCount: 0, itemBuilder: (context, index) {}),
-              )
-            ],
+                            child: InkWell(
+                                onTap: () {
+                                  controller1.selected.value = items[index];
+                                  controller1.filterItems(itineraries);
+
+                                  print(controller1.selected.value);
+                                },
+                                child: Center(child: Text(items[index]))));
+                      }),
+                ),
+                SizedBox(
+                  height: height / 5,
+                  child: ListView.builder(
+                      itemCount: 0, itemBuilder: (context, index) {}),
+                )
+              ],
+            ),
           ),
         ),
       ),

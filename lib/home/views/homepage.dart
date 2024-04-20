@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:kraftnightt/addItenary/add.dart';
+import 'package:kraftnightt/addfriends/friends.dart';
 import 'package:kraftnightt/home/controller/controller.dart';
 import 'package:kraftnightt/home/views/Calander.dart';
 import 'package:kraftnightt/home/views/mainpage.dart';
@@ -23,10 +25,10 @@ class HomeScreen extends StatelessWidget {
             children: [
               /* Replace YourHomeWidget() with the actual widget you want to display */
 
-              Calender(),
               Memoirs(),
               MainPage(),
-              ProfileScreen()
+              EventRegistrationPage(),
+              AddPage(),
             ],
           ),
         ),
@@ -59,13 +61,7 @@ class HomeScreen extends StatelessWidget {
             tabs: [
               GButton(
                 iconActiveColor: Colors.white,
-                text: "Medical Info",
-                // iconActiveColor: Colors.green,
-                icon: Icons.more_vert,
-              ),
-              GButton(
-                iconActiveColor: Colors.white,
-                text: "itenair",
+                text: "Memoirs",
                 // iconActiveColor: Colors.green,
                 icon: Icons.more_vert,
               ),
@@ -77,7 +73,13 @@ class HomeScreen extends StatelessWidget {
               ),
               GButton(
                 iconActiveColor: Colors.white,
-                text: "Profile",
+                text: "add",
+                // iconActiveColor: Colors.green,
+                icon: Icons.add,
+              ),
+              GButton(
+                iconActiveColor: Colors.white,
+                text: "friends",
                 // iconActiveColor: Colors.green,
                 icon: Icons.person,
               ),

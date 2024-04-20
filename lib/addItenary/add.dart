@@ -131,17 +131,14 @@ class _EventRegistrationPageState extends State<EventRegistrationPage> {
                   fillColor: Colors.grey[200],
                   border: InputBorder.none,
                 ),
-                items: ['food', 'travel', 'others']
-                    .map((String value) {
+                items: ['food', 'travel', 'others'].map((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: Text(value),
                   );
                 }).toList(),
                 onChanged: (String? value) {
-                  setState(() {
-                    
-                  });
+                  setState(() {});
                 },
               ),
               SizedBox(height: 20.0),
@@ -162,7 +159,7 @@ class _EventRegistrationPageState extends State<EventRegistrationPage> {
                   },
                   child: Text('Select Start Date'),
                 ),
-                SizedBox(width: 20.0),
+                SizedBox(width: 10.0),
                 ElevatedButton(
                   onPressed: () async {
                     final TimeOfDay? picked = await showTimePicker(
@@ -218,8 +215,10 @@ class _EventRegistrationPageState extends State<EventRegistrationPage> {
                   child: Text('Select End Time'),
                 ),
               ]),
-              SizedBox(height: 20,),
-               DropdownButtonFormField<String>(
+              SizedBox(
+                height: 20,
+              ),
+              DropdownButtonFormField<String>(
                 decoration: InputDecoration(
                   labelText: 'Types',
                   labelStyle: TextStyle(color: Colors.grey),
@@ -227,17 +226,14 @@ class _EventRegistrationPageState extends State<EventRegistrationPage> {
                   fillColor: Colors.grey[200],
                   border: InputBorder.none,
                 ),
-                items: ['friends', 'public', 'private']
-                    .map((String value) {
+                items: ['friends', 'public', 'private'].map((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: Text(value),
                   );
                 }).toList(),
                 onChanged: (String? value) {
-                  setState(() {
-                    
-                  });
+                  setState(() {});
                 },
               ),
               SizedBox(height: 20.0),
@@ -250,12 +246,13 @@ class _EventRegistrationPageState extends State<EventRegistrationPage> {
                   filled: true,
                   fillColor: Colors.grey[200],
                   border: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(vertical: 20.0), // Adjust vertical padding as needed
+                  contentPadding: EdgeInsets.symmetric(
+                      vertical: 20.0), // Adjust vertical padding as needed
                 ),
               ),
 
               SizedBox(height: 10.0),
-              
+
               SizedBox(height: 20.0),
               Center(
                 child: SizedBox(
