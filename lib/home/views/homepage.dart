@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                const Color.fromARGB(255, 243, 58, 33),
+                Colors.black.withOpacity(.5),
                 Colors.grey.withOpacity(.5),
               ],
             ),

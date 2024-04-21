@@ -4,6 +4,7 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:kraftnightt/components/textfield.dart';
 import 'package:kraftnightt/home/controller/controller.dart';
 import 'package:kraftnightt/home/models/itenary.dart';
+import 'package:kraftnightt/home/views/profile.dart';
 
 class MainPage extends StatelessWidget {
   MainPage({super.key});
@@ -18,14 +19,14 @@ class MainPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child: SingleChildScrollView(
             child: Column(
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
+                    const Column(
                       children: [
                         Text(
                           "Where do ",
@@ -37,13 +38,18 @@ class MainPage extends StatelessWidget {
                         Text(
                           "you want to go?",
                           style: TextStyle(
+                            fontFamily: 'Azonix',
                             fontWeight: FontWeight.bold,
                             fontSize: 15,
                           ),
                         )
                       ],
                     ),
-                    Icon(Icons.person)
+                    InkWell(
+                        onTap: () {
+                          Get.to(() => const ProfileScreen());
+                        },
+                        child: const Icon(Icons.person))
                   ],
                 ),
                 SizedBox(
@@ -54,7 +60,7 @@ class MainPage extends StatelessWidget {
                 SizedBox(
                   height: height / 10,
                 ),
-                Row(
+                const Row(
                   children: [
                     Text(
                       "Explore Cities",
@@ -79,15 +85,20 @@ class MainPage extends StatelessWidget {
                           },
                           child: Container(
                               clipBehavior: Clip.hardEdge,
-                              padding: EdgeInsets.only(left: 10, right: 10),
-                              margin: EdgeInsets.all(10),
+                              padding:
+                                  const EdgeInsets.only(left: 10, right: 10),
+                              margin: const EdgeInsets.all(10),
                               height: height / 20,
                               // width: width / 4,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(15),
-                                  gradient: LinearGradient(
-                                      colors: [Colors.blue, Colors.grey]),
-                                  border: Border.all(color: Colors.blue)),
+                                  gradient: const LinearGradient(colors: [
+                                    Color.fromARGB(255, 232, 236, 240),
+                                    Colors.white
+                                  ]),
+                                  border: Border.all(
+                                      color: const Color.fromARGB(255, 0, 0, 0),
+                                      width: 2)),
                               child: Center(child: Text(items[index]))),
                         );
                       }),
@@ -97,22 +108,24 @@ class MainPage extends StatelessWidget {
                     height: height / 3,
                     child: ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        physics: ScrollPhysics(),
+                        physics: const ScrollPhysics(),
                         itemCount: controller1.selecteditems.length,
                         itemBuilder: (context, index) {
                           return Container(
-                            margin: EdgeInsets.all(5),
+                            margin: const EdgeInsets.all(5),
                             height: height / 4,
                             width: width / 2,
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 boxShadow: [
-                                  BoxShadow(blurRadius: 5, color: Colors.grey)
+                                  const BoxShadow(
+                                      blurRadius: 5, color: Colors.grey)
                                 ],
                                 borderRadius: BorderRadius.circular(20),
                                 border: Border.all(
                                     color:
-                                        const Color.fromARGB(255, 12, 12, 12))),
+                                        const Color.fromARGB(255, 16, 16, 16),
+                                    width: 2)),
                             child: Padding(
                               padding: const EdgeInsets.only(
                                   bottom: 40, left: 10, right: 10, top: 10),
@@ -122,7 +135,7 @@ class MainPage extends StatelessWidget {
                                     height: height / 5,
                                     width: width / 2,
                                     decoration: BoxDecoration(
-                                        image: DecorationImage(
+                                        image: const DecorationImage(
                                           image:
                                               AssetImage('lib/asets/img1.jpg'),
                                           fit: BoxFit
@@ -130,7 +143,7 @@ class MainPage extends StatelessWidget {
                                         ),
                                         borderRadius: BorderRadius.circular(20),
                                         border: Border.all(
-                                            color: Color.fromARGB(
+                                            color: const Color.fromARGB(
                                                 255, 236, 234, 238))),
                                   ),
                                   Text(controller1.selecteditems[index].name

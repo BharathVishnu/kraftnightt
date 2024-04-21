@@ -111,7 +111,7 @@ class _EventRegistrationPageState extends State<EventRegistrationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ADD ITENARY'),
+        title: Center(child: Text('ADD ITENARY')),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -127,9 +127,10 @@ class _EventRegistrationPageState extends State<EventRegistrationPage> {
                       await picker.pickImage(source: ImageSource.gallery);
                 },
                 child: Container(
-                  width: 293, // Set the width to the desired value
+                  width: 200, // Set the width to the desired value
                   height: 150, // Set the height to the desired value
                   decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
                     border: Border.all(color: Colors.grey),
                   ),
                   child: pickedFile != null
@@ -144,20 +145,32 @@ class _EventRegistrationPageState extends State<EventRegistrationPage> {
               TextFormField(
                 controller: _titleController,
                 decoration: InputDecoration(
-                  labelText: 'Title',
-                  labelStyle: TextStyle(color: Colors.grey),
-                  filled: true,
-                  fillColor: Colors.grey[200],
-                  border: InputBorder.none,
-                ),
+                    labelText: 'Title',
+                    labelStyle: TextStyle(color: Colors.grey),
+                    filled: true,
+                    fillColor: Colors.grey[200],
+                    border: InputBorder.none,
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.black38),
+                        borderRadius: BorderRadius.circular(25)),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black38),
+                        borderRadius: BorderRadius.circular(25))),
               ),
               SizedBox(height: 10.0),
               SizedBox(height: 10.0),
               DropdownButtonFormField<String>(
                 decoration: InputDecoration(
-                  labelText: 'Interests',
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.black38),
+                      borderRadius: BorderRadius.circular(25)),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black38),
+                      borderRadius: BorderRadius.circular(25)),
+                  // labelText: 'Interests',
                   labelStyle: TextStyle(color: Colors.grey),
                   filled: true,
+                  hintText: "select your interests",
                   fillColor: Colors.grey[200],
                   border: InputBorder.none,
                 ),
@@ -175,7 +188,12 @@ class _EventRegistrationPageState extends State<EventRegistrationPage> {
               ),
               SizedBox(height: 20.0),
               Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-                ElevatedButton(
+                OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                      backgroundColor: Colors.grey.withOpacity(.5),
+                      elevation: 2,
+                      shadowColor: Colors.grey.withOpacity(.5),
+                      foregroundColor: Colors.black),
                   onPressed: () async {
                     final DateTime? picked = await showDatePicker(
                       context: context,
@@ -192,7 +210,12 @@ class _EventRegistrationPageState extends State<EventRegistrationPage> {
                   child: Text('Select Start Date'),
                 ),
                 SizedBox(width: 10.0),
-                ElevatedButton(
+                OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                      backgroundColor: Colors.grey.withOpacity(.5),
+                      elevation: 2,
+                      shadowColor: Colors.grey.withOpacity(.5),
+                      foregroundColor: Colors.black),
                   onPressed: () async {
                     final TimeOfDay? picked = await showTimePicker(
                       context: context,
@@ -214,7 +237,12 @@ class _EventRegistrationPageState extends State<EventRegistrationPage> {
               ]),
               SizedBox(height: 10.0),
               Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-                ElevatedButton(
+                OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                      backgroundColor: Colors.grey.withOpacity(.5),
+                      elevation: 2,
+                      shadowColor: Colors.grey.withOpacity(.5),
+                      foregroundColor: Colors.black),
                   onPressed: () async {
                     final DateTime? picked = await showDatePicker(
                       context: context,
@@ -231,7 +259,12 @@ class _EventRegistrationPageState extends State<EventRegistrationPage> {
                   child: Text('Select End Date'),
                 ),
                 SizedBox(width: 20.0),
-                ElevatedButton(
+                OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                      backgroundColor: Colors.grey.withOpacity(.5),
+                      elevation: 2,
+                      shadowColor: Colors.grey.withOpacity(.5),
+                      foregroundColor: Colors.black),
                   onPressed: () async {
                     final TimeOfDay? picked = await showTimePicker(
                       context: context,
@@ -252,7 +285,14 @@ class _EventRegistrationPageState extends State<EventRegistrationPage> {
               ),
               DropdownButtonFormField<String>(
                 decoration: InputDecoration(
-                  labelText: 'Types',
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.black38),
+                      borderRadius: BorderRadius.circular(25)),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black38),
+                      borderRadius: BorderRadius.circular(25)),
+                  // labelText: 'Types',
+                  hintText: 'types',
                   labelStyle: TextStyle(color: Colors.grey),
                   filled: true,
                   fillColor: Colors.grey[200],
@@ -275,7 +315,15 @@ class _EventRegistrationPageState extends State<EventRegistrationPage> {
                 controller: _descController,
                 maxLines: 5, // Set the maximum number of lines
                 decoration: InputDecoration(
-                  labelText: 'More Info',
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.black38),
+                      borderRadius: BorderRadius.circular(25)),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black38),
+                      borderRadius: BorderRadius.circular(25)),
+                  // labelText: 'More Info',
+                  hintText: '    More information',
+                  hintStyle: TextStyle(),
                   labelStyle: TextStyle(color: Colors.grey),
                   filled: true,
                   fillColor: Colors.grey[200],
@@ -292,8 +340,8 @@ class _EventRegistrationPageState extends State<EventRegistrationPage> {
                   height: 60,
                   child: ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.green),
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          Colors.black.withOpacity(.8)),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),

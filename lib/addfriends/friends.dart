@@ -5,6 +5,7 @@ class AddPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgroundColor: Colors.black.withOpacity(.5),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -12,10 +13,10 @@ class AddPage extends StatelessWidget {
             centerTitle: true,
             automaticallyImplyLeading: false,
             backgroundColor: Colors.white,
-            leading: IconButton(
-              onPressed: () => Navigator.pop(context),
-              icon: Icon(FontAwesomeIcons.arrowDown),
-            ),
+            // leading: IconButton(
+            //   onPressed: () => Navigator.pop(context),
+            //   icon: Icon(FontAwesomeIcons.arrowDown),
+            // ),
             actions: [
               IconButton(
                 onPressed: () => Navigator.pop(context),
@@ -42,7 +43,6 @@ class AddPage extends StatelessWidget {
                         FontAwesomeIcons.search,
                         color: Colors.black,
                       ),
-
                       hintText: "Find Friends",
                       contentPadding: EdgeInsets.all(15.0),
                       hintStyle: TextStyle(
@@ -84,7 +84,7 @@ class AddPage extends StatelessWidget {
                         child: ListTile(
                           leading: CircleAvatar(
                             radius: 25.0,
-                            backgroundColor: Colors.green,
+                            backgroundColor: Colors.black.withOpacity(.5),
                           ),
                           title: Text(
                             dummyData[index]['username']!,
@@ -100,7 +100,7 @@ class AddPage extends StatelessWidget {
                             width: 80.0,
                             padding: EdgeInsets.all(5.0),
                             decoration: BoxDecoration(
-                              color: Colors.green,
+                              color: Colors.black.withOpacity(.80),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(30.0)),
                             ),
@@ -150,11 +150,11 @@ class AddPage extends StatelessWidget {
 
   List<Map<String, String>> _generateDummyData() {
     return [
-      {"username": "User1", "userID": "ID001"},
-      {"username": "User2", "userID": "ID002"},
-      {"username": "User3", "userID": "ID003"},
-      {"username": "User4", "userID": "ID004"},
-      {"username": "User5", "userID": "ID005"},
+      {"username": "Jimmy john's", "userID": "jimmyjohns"},
+      {"username": "BrooklynNets", "userID": "BrooklynNets"},
+      {"username": "Billabong", "userID": "bvb09"},
+      {"username": "javad", "userID": "jaaa"},
+      {"username": "jayadev", "userID": " JD"},
     ];
   }
 }

@@ -8,12 +8,15 @@ class Memoirs extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Padding(
-          padding: const EdgeInsets.only(left: 12, bottom: 8.0, top: 8.0),
-          child: Text(
-            'MEMOIRS',
-            style: TextStyle(color: Colors.black, fontSize: 32),
-            textAlign: TextAlign.left,
+        title: const Padding(
+          padding: EdgeInsets.only(left: 12, bottom: 8.0, top: 8.0),
+          child: Center(
+            child: Text(
+              'MEMOIRS',
+              style: TextStyle(
+                  fontFamily: 'Azonix', color: Colors.black, fontSize: 32),
+              textAlign: TextAlign.left,
+            ),
           ),
         ),
         centerTitle: false,
@@ -23,7 +26,7 @@ class Memoirs extends StatelessWidget {
         stream: FirebaseFirestore.instance.collection('memoirs').snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
 
           if (snapshot.hasError) {
@@ -39,13 +42,13 @@ class Memoirs extends StatelessWidget {
                   memoirsDocs[index].data() as Map<String, dynamic>;
               return Column(
                 children: [
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   ItenaryBox(
                     backgroundImagePath: "",
                     text1: memoirData['title'] ?? '',
                     text2: memoirData['date'] ?? '',
                   ),
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
                 ],
               );
             },
