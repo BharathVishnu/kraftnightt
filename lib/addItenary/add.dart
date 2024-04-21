@@ -334,34 +334,38 @@ class _EventRegistrationPageState extends State<EventRegistrationPage> {
               ),
               SizedBox(height: 10.0),
               SizedBox(height: 20.0),
-              Center(
-                child: SizedBox(
-                  width: 330,
-                  height: 60,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                          Colors.black.withOpacity(.8)),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
+             Center(
+              child: SizedBox(
+                width: 330,
+                height: 60,
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(24.0),
                       ),
                     ),
-                    onPressed: () {
-                      submitForm();
-                    },
-                    child: Text(
-                      'PROCEED',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 24,
-                      ),
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                      Colors.grey,
+                    ),
+                    elevation: MaterialStateProperty.all<double>(8), // Add elevation here
+                  ),
+                  onPressed: () {
+                    submitForm();
+                  },
+                  child: Text(
+                    'PROCEED',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
                     ),
                   ),
                 ),
               ),
-            ],
+            ),
+
+            ],  
           ),
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:kraftnightt/addItenary/add.dart';
 import 'package:kraftnightt/components/textfield.dart';
 import 'package:kraftnightt/home/controller/controller.dart';
 import 'package:kraftnightt/home/models/itenary.dart';
@@ -31,14 +32,14 @@ class MainPage extends StatelessWidget {
                     const Column(
                       children: [
                         Text(
-                          "Where do ",
+                          "Plan your path",
                           style: TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         Text(
-                          "you want to go?",
+                          "where to next?",
                           style: TextStyle(
                             fontFamily: 'Azonix',
                             fontWeight: FontWeight.bold,
@@ -57,13 +58,13 @@ class MainPage extends StatelessWidget {
                 SizedBox(
                   height: height / 20,
                 ),
-                textField("discover a city", Icons.search, false, scontroller,
+                textField("discover", Icons.search, false, scontroller,
                     TextInputType.name),
                 SizedBox(height: 30),
                 const Row(
                   children: [
                     Text(
-                      "Explore Cities",
+                      "Explore ",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     )
                   ],
@@ -113,7 +114,8 @@ class MainPage extends StatelessWidget {
                         itemBuilder: (context, index) {
                           return InkWell(
                             onTap: () {
-                              Get.to(() => DetailPage());
+                              Get.to(() => DetailPage(
+                                  name: controller1.selecteditems[index].name));
                             },
                             child: Container(
                               margin: const EdgeInsets.all(5),
