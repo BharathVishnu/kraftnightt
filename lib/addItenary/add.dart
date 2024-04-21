@@ -356,7 +356,7 @@ class _EventRegistrationPageState extends State<EventRegistrationPage> {
                   child: Text(
                     'PROCEED',
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
