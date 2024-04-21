@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:kraftnightt/calender/calendar.dart';
+import '../calender/calendar.dart';
 
 class AddPage extends StatefulWidget {
   @override
@@ -97,29 +101,36 @@ class _AddPageState extends State<AddPage> {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 16.0, vertical: 4.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: ListTile(
-                      contentPadding: EdgeInsets.all(10),
-                      leading: CircleAvatar(
-                        radius: 25.0,
-                        backgroundColor: Colors.black.withOpacity(.5),
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => MyApp1(),
+                    ));
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 4.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(20),
                       ),
-                      title: Text(
-                        yourFriends[index]['username']!,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16.0,
-                          color: Colors.black,
+                      child: ListTile(
+                        contentPadding: EdgeInsets.all(10),
+                        leading: CircleAvatar(
+                          radius: 25.0,
+                          backgroundColor: Colors.black.withOpacity(.5),
                         ),
+                        title: Text(
+                          yourFriends[index]['username']!,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16.0,
+                            color: Colors.black,
+                          ),
+                        ),
+                        subtitle: Text(yourFriends[index]['userID']!),
                       ),
-                      subtitle: Text(yourFriends[index]['userID']!),
                     ),
                   ),
                 );
