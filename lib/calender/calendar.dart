@@ -13,7 +13,6 @@ class MyApp1 extends StatelessWidget {
       create: (context) => EventProvider(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Calendar App',
         themeMode: ThemeMode.dark,
         darkTheme: ThemeData.dark().copyWith(
             scaffoldBackgroundColor: Colors.black, primaryColor: Colors.green),
@@ -28,11 +27,6 @@ class MainPage1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.green,
-          title: const Text("Calendar Events App"),
-          centerTitle: true,
-        ),
         body: const CalendarWidget(),
         floatingActionButton: FloatingActionButton(
             child: Icon(Icons.add, color: Colors.white),
