@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:kraftnightt/addItenary/add.dart';
+import 'package:kraftnightt/calender/calendar.dart';
 import 'package:kraftnightt/components/textfield.dart';
 import 'package:kraftnightt/home/controller/controller.dart';
 import 'package:kraftnightt/home/models/itenary.dart';
@@ -59,9 +60,7 @@ class MainPage extends StatelessWidget {
                 ),
                 textField("discover a city", Icons.search, false, scontroller,
                     TextInputType.name),
-                
-                SizedBox(
-                  height: 30),
+                SizedBox(height: 30),
                 const Row(
                   children: [
                     Text(
@@ -157,31 +156,27 @@ class MainPage extends StatelessWidget {
                         }),
                   ),
                 ),
-               SizedBox(
-  height: height / 20,
-),
-SwipeButton.expand(
-  thumb: Icon(
-    Icons.double_arrow_rounded,
-    color: Colors.white,
-  ),
-  child: Text(
-    "Plan your day",
-    style: TextStyle(
-      color: Colors.black,
-      fontWeight: FontWeight.bold,
-    ),
-  ),
-  activeThumbColor: Colors.grey[600],
-  activeTrackColor: Colors.grey.shade300,
-  onSwipe: () {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => EventRegistrationPage()), // Replace NextPage with the page you want to navigate to
-    );
-  },
-),
-
+                SizedBox(
+                  height: height / 20,
+                ),
+                SwipeButton.expand(
+                  thumb: Icon(
+                    Icons.double_arrow_rounded,
+                    color: Colors.white,
+                  ),
+                  child: Text(
+                    "Plan your day",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  activeThumbColor: Colors.grey[600],
+                  activeTrackColor: Colors.grey.shade300,
+                  onSwipe: () {
+                    Get.to(() => MyApp1());
+                  },
+                ),
               ],
             ),
           ),
