@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:kraftnightt/addItenary/add.dart';
+import 'package:kraftnightt/calender/calendar.dart';
 import 'package:kraftnightt/components/textfield.dart';
 import 'package:kraftnightt/home/controller/controller.dart';
 import 'package:kraftnightt/home/models/itenary.dart';
@@ -180,7 +181,9 @@ class MainPage extends StatelessWidget {
                   ),
                   activeThumbColor: Colors.grey[600],
                   activeTrackColor: Colors.grey.shade300,
-                  onSwipe: () {},
+                  onSwipe: () {
+                    Get.to(() => MyApp1());
+                  },
                 ),
               ],
             ),
