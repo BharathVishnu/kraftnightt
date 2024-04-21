@@ -4,6 +4,7 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:kraftnightt/components/textfield.dart';
 import 'package:kraftnightt/home/controller/controller.dart';
 import 'package:kraftnightt/home/models/itenary.dart';
+import 'package:kraftnightt/home/views/details.dart';
 import 'package:kraftnightt/home/views/profile.dart';
 import 'package:flutter_swipe_button/flutter_swipe_button.dart';
 
@@ -58,9 +59,7 @@ class MainPage extends StatelessWidget {
                 ),
                 textField("discover a city", Icons.search, false, scontroller,
                     TextInputType.name),
-                
-                SizedBox(
-                  height: 30),
+                SizedBox(height: 30),
                 const Row(
                   children: [
                     Text(
@@ -112,52 +111,60 @@ class MainPage extends StatelessWidget {
                         physics: const ScrollPhysics(),
                         itemCount: controller1.selecteditems.length,
                         itemBuilder: (context, index) {
-                          return Container(
-                            margin: const EdgeInsets.all(5),
-                            height: height / 4,
-                            width: width / 2,
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                boxShadow: [
-                                  const BoxShadow(
-                                      blurRadius: 5, color: Colors.grey)
-                                ],
-                                borderRadius: BorderRadius.circular(20),
-                                border: Border.all(
-                                    color:
-                                        const Color.fromARGB(255, 16, 16, 16),
-                                    width: 2)),
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  bottom: 40, left: 10, right: 10, top: 10),
-                              child: Column(
-                                children: [
-                                  Container(
-                                    height: height / 5,
-                                    width: width / 2,
-                                    decoration: BoxDecoration(
-                                        image: const DecorationImage(
-                                          image:
-                                              AssetImage('lib/asets/img1.jpg'),
-                                          fit: BoxFit
-                                              .cover, // Adjust this based on your requirements
-                                        ),
-                                        borderRadius: BorderRadius.circular(20),
-                                        border: Border.all(
-                                            color: const Color.fromARGB(
-                                                255, 236, 234, 238))),
-                                  ),
-                                  Text(controller1.selecteditems[index].name
-                                      .toString())
-                                ],
+                          return InkWell(
+                            onTap: () {
+                              Get.to(() => DetailPage());
+                            },
+                            child: Container(
+                              margin: const EdgeInsets.all(5),
+                              height: height / 4,
+                              width: width / 2,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    const BoxShadow(
+                                        blurRadius: 5, color: Colors.grey)
+                                  ],
+                                  borderRadius: BorderRadius.circular(20),
+                                  border: Border.all(
+                                      color:
+                                          const Color.fromARGB(255, 16, 16, 16),
+                                      width: 2)),
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    bottom: 40, left: 10, right: 10, top: 10),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: height / 5,
+                                      width: width / 2,
+                                      decoration: BoxDecoration(
+                                          image: const DecorationImage(
+                                            image: AssetImage(
+                                                'lib/asets/img1.jpg'),
+                                            fit: BoxFit
+                                                .cover, // Adjust this based on your requirements
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          border: Border.all(
+                                              color: const Color.fromARGB(
+                                                  255, 236, 234, 238))),
+                                    ),
+                                    Text(controller1.selecteditems[index].name
+                                        .toString())
+                                  ],
+                                ),
                               ),
                             ),
                           );
                         }),
                   ),
                 ),
-                SizedBox(height: height/20,),
-                 SwipeButton.expand(
+                SizedBox(
+                  height: height / 20,
+                ),
+                SwipeButton.expand(
                   thumb: Icon(
                     Icons.double_arrow_rounded,
                     color: Colors.white,
@@ -171,12 +178,8 @@ class MainPage extends StatelessWidget {
                   ),
                   activeThumbColor: Colors.grey[600],
                   activeTrackColor: Colors.grey.shade300,
-                  onSwipe: () {
-                  
-                  
-                  },
-                )
-                ,
+                  onSwipe: () {},
+                ),
               ],
             ),
           ),
