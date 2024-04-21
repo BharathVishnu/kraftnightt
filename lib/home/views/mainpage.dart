@@ -5,6 +5,7 @@ import 'package:kraftnightt/components/textfield.dart';
 import 'package:kraftnightt/home/controller/controller.dart';
 import 'package:kraftnightt/home/models/itenary.dart';
 import 'package:kraftnightt/home/views/profile.dart';
+import 'package:flutter_swipe_button/flutter_swipe_button.dart';
 
 class MainPage extends StatelessWidget {
   MainPage({super.key});
@@ -57,9 +58,9 @@ class MainPage extends StatelessWidget {
                 ),
                 textField("discover a city", Icons.search, false, scontroller,
                     TextInputType.name),
+                
                 SizedBox(
-                  height: height / 10,
-                ),
+                  height: 30),
                 const Row(
                   children: [
                     Text(
@@ -154,7 +155,28 @@ class MainPage extends StatelessWidget {
                           );
                         }),
                   ),
+                ),
+                SizedBox(height: height/20,),
+                 SwipeButton.expand(
+                  thumb: Icon(
+                    Icons.double_arrow_rounded,
+                    color: Colors.white,
+                  ),
+                  child: Text(
+                    "Plan your day",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  activeThumbColor: Colors.grey[600],
+                  activeTrackColor: Colors.grey.shade300,
+                  onSwipe: () {
+                  
+                  
+                  },
                 )
+                ,
               ],
             ),
           ),
